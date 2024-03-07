@@ -123,6 +123,7 @@ function completeTask(li) {
   var completedList = document.getElementById("completed");
   var toDoList = document.getElementById("toDo");
   if (li.parentNode === toDoList) {
+    var subtasks = li.querySelector("ul");
     while (li.childNodes.length > 1) {
       li.removeChild(li.lastChild);
     }
@@ -155,6 +156,10 @@ function completeTask(li) {
     deleteBox.onclick = function () { li.remove() };
     deleteGroup.appendChild(deleteBox);
     li.appendChild(deleteGroup);
+    li.appendChild(subtasks);
+    subtasks.style.display = "none";
+
+
     li.classList.add("default");
     completedList.appendChild(li);
     li.firstChild.style.color = "grey";
@@ -210,6 +215,8 @@ function uncompleteTask(li) {
   var completedList = document.getElementById("completed");
   var toDoList = document.getElementById("toDo");
   if (li.parentNode === completedList) {
+    var subtasks = li.querySelector("ul");
+
     while (li.childNodes.length > 1) {
       li.removeChild(li.lastChild);
     }
@@ -263,7 +270,8 @@ function uncompleteTask(li) {
     deleteGroup.appendChild(deleteBox);
     li.appendChild(deleteGroup);
 
-
+    li.appendChild(subtasks);
+    subtasks.style.display = "initial";
 
     toDoList.append(li);
     li.classList.add("default");
